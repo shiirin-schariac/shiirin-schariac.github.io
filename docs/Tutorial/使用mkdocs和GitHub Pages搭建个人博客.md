@@ -189,6 +189,6 @@
 
 ### 推荐阅读
 
-https://squidfunk.github.io/mkdocs-material/
+[GitHub_SSH link](https://squidfunk.github.io/mkdocs-material/)
 
-https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh
+[mkdocs_material documents](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)
