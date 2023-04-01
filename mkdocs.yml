@@ -4,6 +4,8 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.top
+    - navigation.path
   palette: 
 
     # Palette toggle for light mode
