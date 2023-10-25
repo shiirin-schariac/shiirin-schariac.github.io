@@ -1,11 +1,21 @@
 # 不看也行
 
-> 唯有你的光辉，能像漫过山岭的薄雾，像和风从静谧世界琴弦里带来的夜曲，像朗照溪水的月色。
+> 唯有你的光辉
+> 
+> 能像漫过山岭的薄雾
+> 
+> 像和风从静谧世界琴弦里带来的夜曲
+> 
+> 像朗照溪水的月色
 >
 > Thy light alone like mist o'er mountains driven,
+> 
 >                 Or music by the night-wind sent
+> 
 >                 Through strings of some still instrument,
+> 
 >                 Or moonlight on a midnight stream,
+> 
 > Gives grace and truth to life's unquiet dream.
 
 ## 第二段也不知道放什么大家看看大宗师（我最喜欢的一段）
