@@ -27,6 +27,7 @@ xv6同时利用这个机制实现了一些技巧：在几个地址空间中映�
 | 1   | 0   | 1   | 可读可执行页         |
 | 1   | 1   | 0   | 保留以等待将来使用   |
 | 1   | 1   | 1   | 可读可写可执行页     |
+
 > 关于non-leaf PTE: For non-leaf PTEs, the D, A, and U bits are reserved for future use and must be cleared by software for forward compatibility.
 
 
