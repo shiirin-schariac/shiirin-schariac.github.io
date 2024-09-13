@@ -1,0 +1,1867 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Chapter%202%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%84%E7%BB%87/">
+      
+      
+        <link rel="next" href="../Chapter%204%20-%20%E9%99%B7%E9%98%B1%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Chapter 3 页表 - Wo Es war, soll Ich werden.</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Wo Es war, soll Ich werden." class="md-header__button md-logo" aria-label="Wo Es war, soll Ich werden." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wo Es war, soll Ich werden.
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3   页表
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  不看也行
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../partialife/a%20glimpse/" class="md-tabs__link">
+          
+  
+  Partialife
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E4%B8%9C%E6%96%B9/%E8%BE%9B%E8%AF%8D%E5%8D%81%E9%80%89/" class="md-tabs__link">
+          
+  
+  个人文学索引
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Wo Es war, soll Ich werden." class="md-nav__button md-logo" aria-label="Wo Es war, soll Ich werden." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wo Es war, soll Ich werden.
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不看也行
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blogs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blogs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rust学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BD%BF%E7%94%A8mkdocs%E5%92%8CGitHub%20Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用mkdocs和GitHub Pages搭建个人博客
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Mit 6 1810
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Mit 6 1810
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文件系统学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_3%20PageTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 3 PageTable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_4%20Trap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 4 Trap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_5%20COW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 5 COW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/_Preparation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+     Preparation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xv6学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Xv6学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%201%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1   操作系统概览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%202%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%84%E7%BB%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2   操作系统组织
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 3   页表
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3   页表
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-1 页表硬件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-2 内核地址空间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-3 代码阅读：创建地址空间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-4 物理内存分配
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-5 代码阅读：物理内存分配器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-6 进程地址空间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-7-sbrk" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-7 代码阅读：sbrk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-8-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-8 代码阅读：exec
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      思考部分
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%204%20-%20%E9%99%B7%E9%98%B1%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4   陷阱与系统调用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Partialife
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Partialife
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/a%20glimpse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A glimpse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/partial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/partiallllife/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partiallllife
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kashi
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Kashi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/kashi/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%82%A2%E3%83%AF%E3%83%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マジックアワー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    个人文学索引
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            个人文学索引
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    东方
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            东方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E4%B8%9C%E6%96%B9/%E8%BE%9B%E8%AF%8D%E5%8D%81%E9%80%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    辛词十选
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    西方
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            西方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E8%A5%BF%E6%96%B9/Poems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Poems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-1 页表硬件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-2 内核地址空间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-3 代码阅读：创建地址空间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-4 物理内存分配
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-5 代码阅读：物理内存分配器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-6 进程地址空间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-7-sbrk" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-7 代码阅读：sbrk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-8-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      3-8 代码阅读：exec
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      思考部分
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Chapter 3   页表</h1>
+
+<p>每个进程都会被分到一块独立的内存空间，这块内存空间中的地址被映射到一张或几张页表上，进程使用页表访问内存。页表机制保证了进程不会访问非法的内存（即隔离了不同进程的内存空间），同时为进程提供了一个在它看来“从0开始”的内存空间，方便其访问。</p>
+<p>xv6同时利用这个机制实现了一些技巧：在几个地址空间中映射同一内存（ trampoline 页），以及用一个未映射页来保护内核栈和用户栈。</p>
+<p>阅读前需要分辨的基础概念：</p>
+<ul>
+<li>页与页表的关系：页为一块物理内存，页表中储存了一系列的页表项，每个页表项指向一页即一块物理内存。假设一页为4096个字节，虚拟地址a为一页的起始地址，则a ～ a+4095指向一个页表项，a+4096指向下一个页表项。</li>
+<li>虚拟地址 = 一个查找页表项的地址 + 偏移量。物理地址 = 页表项中储存的物理内存块地址 + 偏移量。</li>
+</ul>
+<h3 id="3-1">3-1 页表硬件</h3>
+<blockquote>
+<p>一个RISC-V页表在逻辑上是一个由2²⁷（134,217,728）个<b>页表项（Page Table Entry, PTE）</b>组成的数组。每个<strong>PTE</strong>包含一个44位的<b>物理页号（Physical Page Number, PPN）</b>和一些标志位。分页硬件通过利用39位中的高27位索引到页表中找到一个<strong>PTE</strong>来转换一个虚拟地址，并计算出一个56位的物理地址，它的前44位来自于<strong>PTE</strong>中的<strong>PPN</strong>，而它的后12位则是从原来的虚拟地址复制过来的。</p>
+</blockquote>
+<p>页表硬件负责将页表中的虚拟地址映射为物理地址。虚拟地址为页表标号( index ) + 偏移量( offset )。页表标号对应了页表中的一项，也即页表项的地址，此页表项为物理内存中的起始位置：该起始位置加上偏移量即为虚拟地址对应的物理地址。</p>
+<p>即页表可以为简单地被看为一个存储了多个物理内存起始位置的数组，结合虚拟地址中的偏移量，虚拟地址可以被转换为物理地址。</p>
+<p>每个 PTE 都包含标志位，用于告诉分页硬件相关的虚拟地址被允许怎样使用。<code>PTE_V</code> 表示 PTE 是否存在：如果没有设置，对该页的引用会引起异常（即不允许）。<code>PTE_R</code> 控制是否允许指令读取该页。<code>PTE_W</code> 控制是否允许指令向该页写入。<code>PTE_X</code> 控制 CPU 是否可以将页面的内容解释为指令并执行。<code>PTE_U</code> 控制是否允许用户态下的指令访问页面；如果不设置 <code>PTE_U</code>， 对应 PTE 只能在内核态下使用。</p>
+<p>其中X、W、R三位为leaf PTE（不可修改的），riscv文档中对于每一页持有的权限位代表的该页性质的说明：</p>
+<table>
+<thead>
+<tr>
+<th>X</th>
+<th>W</th>
+<th>R</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>指向下一级页表的指针</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>只读页</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>保留以等待将来使用</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>可读可写页</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>只执行页</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>可读可执行页</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>保留以等待将来使用</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>可读可写可执行页</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>关于non-leaf PTE: For non-leaf PTEs, the D, A, and U bits are reserved for future use and must be cleared by software for forward compatibility.</p>
+<p>对于lab3中最后一个任务需要用到的 <code>PTE_A</code> ，文档中进行的说明如下：Each leaf PTE contains an accessed (A) and dirty (D) bit. The A bit indicates the virtual page has been read, written, or fetched from since the last time the A bit was cleared. The D bit indicates the virtual page has been written since the last time the D bit was cleared.</p>
+<p>本lab中我们先考虑 <code>PTE_A</code> 是如何实现的：对于一个 <code>PTE_A</code> 为0的页表，一旦被访问，就设置其 <code>PTE_A</code> 为1。 <code>PTE_A</code> 永远不应该被主动清除（为了提高效率），在本lab中，我们在调用过 <code>pgaccess</code> 之后清除 <code>PTE_A</code> 以判断其是否在上一次调用 <code>pgaccess</code> 后被访问。</p>
+</blockquote>
+<p>CPU内有 <code>satp</code> 寄存器记录需要使用的页表的物理位置，不同的CPU可以记录不同的页表，保证每个进程都有自己的页表所描述的内存空间。</p>
+<p>通过已知的页表物理位置，结合虚拟地址中的页表项标号，可以递进式地在xv6的三级页表中找到对应的物理内存块的地址。（这一步主要由硬件完成）</p>
+<h3 id="3-2">3-2 内核地址空间</h3>
+<p>xv6为每个进程维护一个映射其用户地址空间的页表。对内核，维护一个单独的描述内核地址空间的页表，这个页表的配置是固定的，以保证内核可以通过虚拟地址访问物理内存。</p>
+<p>内核中的虚拟地址映射从地址 <code>0x80000000</code> 开始，到（至少） <code>0x86400000</code> 结束。 <code>0x80000000</code> 以下的内存用于I/O设备，内核可以通过读取/写入这些特殊的物理地址与设备进行交互。内核对设备寄存器和RAM（物理内存）使用直接映射。</p>
+<p>内核中内核栈页与trampoline页不是直接映射。</p>
+<ul>
+<li>
+<p>trampoline页：一个trampoline物理页（存放trampoline代码）被映射两次，一次在虚拟地址空间顶部，一次直接映射。同时它在用户的地址空间中被多次映射。</p>
+</li>
+<li>
+<p>内核栈页：内核栈页被映射到地址空间的顶端后，在其后放置一个 <code>PTE_V</code> 无效的页（守护页），以保证在内核栈溢出时报错。</p>
+</li>
+</ul>
+<h3 id="3-3">3-3 代码阅读：创建地址空间</h3>
+<p>本节中的主要代码位于 <code>kernel/vm.c</code> 。</p>
+<p>核心数据结构： <code>pagetable_t</code> ，本质为一个指向根页表页的指针，它可以<strong>是</strong>内核页表也可以<strong>是</strong>进程页表。</p>
+<p>首先 <code>main</code> 函数调用 <code>kvminit</code> 来创建内核页表并分配一页物理内存来存放根页表页，然后调用 <code>kvmmap</code> 将内核所需要的硬件资源映射到物理地址。这些资源包括内核的指令和数据。</p>
+<p>产生映射时的核心函数：</p>
+<ul>
+<li>
+<p><code>mappages</code> ：它对每个虚拟地址先调用 walk 查找其对应的最后一级页表项的地址，然后初始化页表项，使其持有相关的物理页号、所需的权限以及<code>PTE_V</code>来标记 PTE 为有效。</p>
+</li>
+<li>
+<p><code>walk</code> ：在页表中查找并返回给定虚拟地址对应的最后一级页表项的地址。如果查找到的页表项无效，那么所需的物理页还没有被分配 -&gt; 此时若 <code>alloc</code> 参数被设置，<code>walk</code> 会分配一个新的页表页，并把它的物理地址放在 PTE 中。</p>
+</li>
+</ul>
+<pre><code class="language-c">// va=虚拟内存起始地址，pa=物理内存起始地址，size=待映射地址空间大小。
+int
+mappages(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, int perm)
+// Create PTEs for virtual addresses starting at va that refer to physical addresses starting at pa.
+{
+  uint64 a, last;
+  pte_t *pte;
+
+  // 以页为单位，所以va和size都必须匹配PGSIZE
+  if((va % PGSIZE) != 0)
+    panic(&quot;mappages: va not aligned&quot;);
+
+  if((size % PGSIZE) != 0)
+    panic(&quot;mappages: size not aligned&quot;);
+
+  if(size == 0)
+    panic(&quot;mappages: size&quot;);
+
+  a = va; // 当前虚拟地址
+  last = va + size - PGSIZE; // 虚拟地址范围的结束地址
+  for(;;){
+    if((pte = walk(pagetable, a, 1)) == 0) // 调用 `walk` 函数来查找虚拟地址 `a` 对应的页表项的地址，并将结果存储在变量 `pte` 中。如果查找失败（即返回值为0），则说明页表项不存在，函数返回-1。
+      return -1;
+    if(*pte &amp; PTE_V) // 检查页表项是否已经被映射。
+      panic(&quot;mappages: remap&quot;);
+    *pte = PA2PTE(pa) | perm | PTE_V; // 将页表项设置为有效，并存储相应的物理页号、权限标志等信息。`PA2PTE(pa)` 是将物理地址转换为页表项格式的宏，`perm` 表示要设置的权限标志，`PTE_V` 表示页表项有效。
+    if(a == last)
+      break;
+    // 将地址向后移动一页大小，以处理下一个虚拟地址。
+    a += PGSIZE;
+    pa += PGSIZE;
+  }
+  return 0;
+}
+</code></pre>
+<pre><code class="language-c">pte_t *
+walk(pagetable_t pagetable, uint64 va, int alloc)
+{
+  if(va &gt;= MAXVA) // 检查虚拟地址是否超出了最大虚拟地址范围。如果超出了最大虚拟地址范围
+    panic(&quot;walk&quot;);
+
+  for(int level = 2; level &gt; 0; level--) {
+    pte_t *pte = &amp;pagetable[PX(level, va)];
+    // 根据当前级别和虚拟地址计算出对应的页表项的地址，并将其存储在变量 `pte` 中。
+
+    if(*pte &amp; PTE_V) {
+    // 检查页表项是否有效。有效说明该页表项中的地址有效。
+      pagetable = (pagetable_t)PTE2PA(*pte);
+      // 将该页表项中的地址转换为物理地址储存在pagetable中
+      // 若该页表项并非最后一级，则使用该地址寻找下一级页表
+      // 若该页表项为最后一级，则返回该页表项中存储的物理地址
+    } else {
+      if(!alloc || (pagetable = (pde_t*)kalloc()) == 0)
+      // 若alloc为1，使用kalloc分配新的物理页
+        return 0; // 分配不成功或不分配
+      memset(pagetable, 0, PGSIZE); // 初始化新分配的物理页
+      *pte = PA2PTE(pagetable) | PTE_V; // 设置相应的权限标志，并将下一级页表的物理地址存储在当前页表项中。
+    }
+  }
+  return &amp;pagetable[PX(0, va)]; // 返回最低级别的页表项的地址，即对应给定虚拟地址的页表项的地址。
+}
+</code></pre>
+<blockquote>
+<p>疑问：怎么感觉实际上没有看到分配物理内存的部分？
+回答：本过程不涉及物理空间的分配，是在已经分配好的物理空间上初始化地址空间，物理空间的分配见kalloc函数。</p>
+</blockquote>
+<p>内核页表被映射后，根页表页的物理地址会被写入CPU的 <code>satp</code> 寄存器中，之后CPU会使用这个页表进行映射。</p>
+<p>此处需要回顾计组中的TLB知识，即页表中的快表。xv6改变页表后，会使该页表在TLB中的对应索引项失效，否则可能导致进程访问非法的内存空间。</p>
+<h3 id="3-4">3-4 物理内存分配</h3>
+<p>xv6 使用内核地址结束到 <code>PHYSTOP</code> （物理地址结束的位置）之间的物理内存来进行运行时分配。它每次分配和释放整个4096 字节的页面。它通过保存空闲页链表，来记录哪些页是空闲的。分配包括从链表中删除一页；释放包括将释放的页面添加到空闲页链表中。</p>
+<h3 id="3-5">3-5 代码阅读：物理内存分配器</h3>
+<p>本节中的主要代码位于 <code>kernel/kalloc.c</code> 。</p>
+<p>调用 <code>kalloc</code> 时，分配器从一个存储空闲页表的链表 <code>freelist</code> 中查找空闲的页表并返回一个内核可使用的指向这个页表的指针（=将其分配给对应进程），并将其从 <code>freelist</code> 中删除。</p>
+<p>源代码如下，根据文档进行了注释补充：</p>
+<pre><code class="language-c">// Physical memory allocator, for user processes,
+// kernel stacks, page-table pages,
+// and pipe buffers. Allocates whole 4096-byte pages.
+
+// omit the library part
+
+void freerange(void *pa_start, void *pa_end);
+
+extern char end[]; // first address after kernel.
+                   // defined by kernel.ld.
+
+// 单个指向空闲页表的指针
+struct run {
+  struct run *next;
+};
+
+// 一个抽象的内存 -&gt; freelist是一个储存空闲页表的链表
+struct {
+  struct spinlock lock;
+  struct run *freelist;
+} kmem;
+
+// 首先调用kinit初始化kmem
+// 并释放从内核内存结束位置到物理内存结束位置的所有页表
+void
+kinit()
+{
+  initlock(&amp;kmem.lock, &quot;kmem&quot;);
+  freerange(end, (void*)PHYSTOP);
+}
+
+
+// 将给出的物理地址始末范围内的页表全部设为空闲页表
+// = 释放指定范围内的页表内存
+void
+freerange(void *pa_start, void *pa_end)
+{
+  char *p;
+  p = (char*)PGROUNDUP((uint64)pa_start);
+  for(; p + PGSIZE &lt;= (char*)pa_end; p += PGSIZE)
+    kfree(p);
+}
+
+// Free the page of physical memory pointed at by pa,
+// which normally should have been returned by a
+// call to kalloc().  (The exception is when
+// initializing the allocator; see kinit above.)
+// 用于释放页表内存，释放后将空页表加入freelist
+void
+kfree(void *pa)
+{
+  struct run *r;
+
+  if(((uint64)pa % PGSIZE) != 0 || (char*)pa &lt; end || (uint64)pa &gt;= PHYSTOP)
+    panic(&quot;kfree&quot;);
+
+  // Fill with junk to catch dangling refs.
+  // 填充垃圾使对该页表的访问无效
+  memset(pa, 1, PGSIZE);
+
+  // 指向被释放的页表
+  r = (struct run*)pa;
+
+  acquire(&amp;kmem.lock);
+  // 将r加入freelist的头位置
+  r-&gt;next = kmem.freelist;
+  kmem.freelist = r;
+  release(&amp;kmem.lock);
+}
+
+// Allocate one 4096-byte page of physical memory.
+// Returns a pointer that the kernel can use.
+// Returns 0 if the memory cannot be allocated.
+void *
+kalloc(void)
+{
+  struct run *r; 
+
+  acquire(&amp;kmem.lock);
+  r = kmem.freelist; // 从freelist的头获取一个空闲页表
+  if(r)
+    kmem.freelist = r-&gt;next;
+  release(&amp;kmem.lock);
+
+  if(r)
+    memset((char*)r, 5, PGSIZE); // fill with junk
+  return (void*)r;
+}
+
+</code></pre>
+<h3 id="3-6">3-6 进程地址空间</h3>
+<p>一个进程要求更多物理空间的步骤：xv6使用 <code>kalloc</code> 分配物理页并将指向该物理页的PTE添加到进程页表中，设置其PTE项。</p>
+<p>需要注意的是内核会映射一页trampoline页到每一个用户地址空间的顶端（用于跳转至内核态），所以trampoline页的物理内存页在所有地址空间中都被映射了一遍。</p>
+<p>在用户地址空间中，用户栈的下方会存在一页守护页来防止进程访问用户栈溢出而需要使用的非法内存。</p>
+<h3 id="3-7-sbrk">3-7 代码阅读：sbrk</h3>
+<p><code>sbrk</code> 是一个进程收缩或增长内存的系统调用。该系统调用由函数 <code>growproc</code> 实现:</p>
+<pre><code class="language-c">// Grow or shrink user memory by n bytes.
+// Return 0 on success, -1 on failure.
+int
+growproc(int n)
+// n为正数增长内存，为负数释放内存
+{
+  uint64 sz;
+  struct proc *p = myproc();
+
+  sz = p-&gt;sz;
+  if(n &gt; 0){
+    if((sz = uvmalloc(p-&gt;pagetable, sz, sz + n, PTE_W)) == 0) 
+    // 使用uvmalloc通过kalloc分配物理内存
+    // 并使用mappages将页表项添加到用户页表中
+    {
+      return -1;
+    }
+  } else if(n &lt; 0)
+  {
+    sz = uvmdealloc(p-&gt;pagetable, sz, sz + n);
+    // uvmdealloc通过uvmunmap使用walk来查找页表项
+    // 查找到对应页表项后调用kfree来释放其引用的物理内存
+  }
+  p-&gt;sz = sz;
+  return 0;
+}
+</code></pre>
+<p>该函数中使用的 <code>uvmalloc</code> :</p>
+<pre><code class="language-c">// Allocate PTEs and physical memory to grow process from oldsz to
+// newsz, which need not be page aligned.  Returns new size or 0 on error.
+uint64
+uvmalloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz, int xperm)
+{
+  char *mem;
+  uint64 a;
+
+  if(newsz &lt; oldsz)
+    return oldsz;
+
+  oldsz = PGROUNDUP(oldsz);
+  for(a = oldsz; a &lt; newsz; a += PGSIZE){
+    mem = kalloc(); // mem为指向空闲页的指针
+    if(mem == 0){
+      uvmdealloc(pagetable, a, oldsz);
+      return 0;
+    }
+    memset(mem, 0, PGSIZE);
+    if(mappages(pagetable, a, PGSIZE, (uint64)mem, PTE_R|PTE_U|xperm) != 0)
+    // 使用mappages对新分配的页进行映射，将其加入到用户页表中
+    {
+      kfree(mem); // 如果mappages失败，释放新分配的内存
+      uvmdealloc(pagetable, a, oldsz);
+      return 0;
+    }
+  }
+  return newsz;
+}
+</code></pre>
+<p>该函数中使用的 <code>uvmdealloc</code> 及 <code>uvmunmap</code> :</p>
+<pre><code class="language-c">// Deallocate user pages to bring the process size from oldsz to
+// newsz.  oldsz and newsz need not be page-aligned, nor does newsz
+// need to be less than oldsz.  oldsz can be larger than the actual
+// process size.  Returns the new process size.
+uint64
+uvmdealloc(pagetable_t pagetable, uint64 oldsz, uint64 newsz)
+{
+  if(newsz &gt;= oldsz)
+    return oldsz;
+
+  if(PGROUNDUP(newsz) &lt; PGROUNDUP(oldsz)){
+    int npages = (PGROUNDUP(oldsz) - PGROUNDUP(newsz)) / PGSIZE;
+    // 计算需要移除的页数
+    uvmunmap(pagetable, PGROUNDUP(newsz), npages, 1);
+  }
+
+  return newsz;
+}
+</code></pre>
+<pre><code class="language-c">// Remove npages of mappings starting from va. va must be
+// page-aligned. The mappings must exist.
+// Optionally free the physical memory. -&gt; ????
+void
+uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
+{
+  uint64 a;
+  pte_t *pte;
+
+  if((va % PGSIZE) != 0)
+    panic(&quot;uvmunmap: not aligned&quot;);
+
+  for(a = va; a &lt; va + npages*PGSIZE; a += PGSIZE){
+      // 使用walk对每一页起始的虚拟地址查找其对应的页表项
+      // 该页表项对应一页，所以虚拟地址以PGSIZE递增
+    if((pte = walk(pagetable, a, 0)) == 0) 
+      panic(&quot;uvmunmap: walk&quot;);
+    if((*pte &amp; PTE_V) == 0)
+      panic(&quot;uvmunmap: not mapped&quot;);
+    if(PTE_FLAGS(*pte) == PTE_V)
+      panic(&quot;uvmunmap: not a leaf&quot;);
+    if(do_free){
+      uint64 pa = PTE2PA(*pte);
+      kfree((void*)pa);
+    }
+    *pte = 0;
+  }
+}
+</code></pre>
+<blockquote>
+<p>疑问：没有看到 <code>uvmunmap</code> 可选使物理内存无效的部分？</p>
+</blockquote>
+<h3 id="3-8-exec">3-8 代码阅读：exec</h3>
+<p><code>exec</code> 是创建一个用户地址空间的系统调用。它读取储存在文件系统上的文件用来<strong>初始化</strong>一个用户地址空间。其将对应的文件中需要载入内存的部分载入用户地址空间的步骤为：</p>
+<p>打开二进制文件路径 -&gt; 读取ELF头，检查该文件是否是ELF类型 -&gt; 使用<code>proc_pagetable</code> 分配一个没有使用的页表 -&gt; 使用 <code>uvmalloc</code> 为每一个 ELF 段分配内存 -&gt; <code>loadseg</code> 使用 <code>walkaddr</code> 找到被分配的内存的物理地址，在该地址写入 ELF 段的每一页，页的内容通过 <code>readi</code> 从文件中读取。</p>
+<p><code>exec</code> 本质为创造一个新的内存映象载入指定二进制文件来执行系统调用，如果系统调用执行成功，旧的映像（即调用 <code>exec</code> 的进程）就会被释放。</p>
+<h3 id="_1">思考部分</h3>
+<p>对内存映象的产生过程做一个总结</p>
+<p>初始化进程内存（使用 <code>exec</code> 或单纯初始化进程时分配trapframe页与trampoline页？） -&gt; 初始化完成后，进程可以调用 <code>sbrk</code> 增加或减少内存 -&gt; 以增加内存为例： <code>uvmalloc</code> 使用 <code>kalloc</code> 分配物理内存后，使用 <code>mappages</code> 将物理地址放入虚拟地址对应的页表项中（该页表项的地址由 <code>walk</code> 查出）</p>
+<p>推荐阅读：<a href="https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMFDQC-and-Priv-v1.11/riscv-privileged-20190608.pdf">RISC-V privileged architecture manual</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.path"], "search": "../../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

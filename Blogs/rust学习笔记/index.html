@@ -1,0 +1,2591 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../%E4%BD%BF%E7%94%A8mkdocs%E5%92%8CGitHub%20Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Rust学习笔记 - Wo Es war, soll Ich werden.</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wo Es war, soll Ich werden." class="md-header__button md-logo" aria-label="Wo Es war, soll Ich werden." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wo Es war, soll Ich werden.
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rust学习笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  不看也行
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../partialife/a%20glimpse/" class="md-tabs__link">
+          
+  
+  Partialife
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E4%B8%9C%E6%96%B9/%E8%BE%9B%E8%AF%8D%E5%8D%81%E9%80%89/" class="md-tabs__link">
+          
+  
+  个人文学索引
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wo Es war, soll Ich werden." class="md-nav__button md-logo" aria-label="Wo Es war, soll Ich werden." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wo Es war, soll Ich werden.
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不看也行
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blogs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blogs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Rust学习笔记
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Rust学习笔记
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      多个元素构成的复合类型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      函数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制流
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      所有权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      引用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="引用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      slice类型（本质为引用）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      结构体（非Copy数据类型）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结构体（非Copy数据类型）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      关联函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      枚举-enums
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="枚举-enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option枚举
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match" class="md-nav__link">
+    <span class="md-ellipsis">
+      match控制流
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-let" class="md-nav__link">
+    <span class="md-ellipsis">
+      if-let简洁控制流
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      模块系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模块系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crate" class="md-nav__link">
+    <span class="md-ellipsis">
+      包和crate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义模块来控制作用域与私有性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      引用模块项目的路径
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      将模块拆分为多个文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      集合
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="集合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      vector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      String
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hashmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      HashMap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="错误处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-panic" class="md-nav__link">
+    <span class="md-ellipsis">
+      不可恢复的错误-使用panic!处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      可恢复的错误-使用result处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trait" class="md-nav__link">
+    <span class="md-ellipsis">
+      泛型、Trait 和生命周期
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="泛型、Trait 和生命周期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      泛型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trait_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      trait：定义共同行为
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      生命周期
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-chapter11" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Chapter11
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="After Chapter11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arc-atomic-reference-counted" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arc - atomic reference counted
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8mkdocs%E5%92%8CGitHub%20Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用mkdocs和GitHub Pages搭建个人博客
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Mit 6 1810
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Mit 6 1810
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文件系统学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/Lab/Lab_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/Lab/Lab_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/Lab/Lab_3%20PageTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 3 PageTable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/Lab/Lab_4%20Trap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 4 Trap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/Lab/Lab_5%20COW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 5 COW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/Lab/_Preparation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+     Preparation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xv6学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Xv6学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/xv6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chapter%201%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1   操作系统概览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/xv6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chapter%202%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%84%E7%BB%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2   操作系统组织
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/xv6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chapter%203%20-%20%E9%A1%B5%E8%A1%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3   页表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mit-6_1810/xv6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chapter%204%20-%20%E9%99%B7%E9%98%B1%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4   陷阱与系统调用
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Partialife
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Partialife
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../partialife/a%20glimpse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A glimpse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../partialife/partial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../partialife/partiallllife/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partiallllife
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kashi
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Kashi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../partialife/kashi/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%82%A2%E3%83%AF%E3%83%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マジックアワー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    个人文学索引
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            个人文学索引
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    东方
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            东方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E4%B8%9C%E6%96%B9/%E8%BE%9B%E8%AF%8D%E5%8D%81%E9%80%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    辛词十选
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    西方
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            西方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E8%A5%BF%E6%96%B9/Poems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Poems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      多个元素构成的复合类型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      函数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制流
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      所有权
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      引用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="引用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      slice类型（本质为引用）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      结构体（非Copy数据类型）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结构体（非Copy数据类型）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      关联函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      枚举-enums
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="枚举-enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option枚举
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#match" class="md-nav__link">
+    <span class="md-ellipsis">
+      match控制流
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-let" class="md-nav__link">
+    <span class="md-ellipsis">
+      if-let简洁控制流
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      模块系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模块系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crate" class="md-nav__link">
+    <span class="md-ellipsis">
+      包和crate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义模块来控制作用域与私有性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      引用模块项目的路径
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      将模块拆分为多个文件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      集合
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="集合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      vector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      String
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hashmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      HashMap
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      错误处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="错误处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-panic" class="md-nav__link">
+    <span class="md-ellipsis">
+      不可恢复的错误-使用panic!处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      可恢复的错误-使用result处理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trait" class="md-nav__link">
+    <span class="md-ellipsis">
+      泛型、Trait 和生命周期
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="泛型、Trait 和生命周期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      泛型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trait_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      trait：定义共同行为
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      生命周期
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-chapter11" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Chapter11
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="After Chapter11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arc-atomic-reference-counted" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arc - atomic reference counted
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Rust学习笔记</h1>
+
+<h2 id="_1">变量</h2>
+<p>加mut可变，注意引用时要加<code>&amp;mut</code></p>
+<p>使用<code>:</code>标注类型，常量在声明时必须标注类型</p>
+<p>e.g.<code>const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;</code></p>
+<p>变量重定义会发生隐藏（shadowing），本质是在当前作用域下创造了一个同名的新变量。</p>
+<p>严格来说rust不允许空变量存在，虽然在定义时可以暂时不给予变量值，但是调用该变量前必须赋予值否则会报错。</p>
+<h2 id="_2">多个元素构成的复合类型</h2>
+<ol>
+<li>元组</li>
+</ol>
+<p>长度不可变、不同元素数据类型可以不同</p>
+<pre><code class="language-rust">fn main() {
+      let tup = (500, 6.4, 1);
+
+      let (x, y, z) = tup;
+      println!(&quot;The value of y is: {y}&quot;);
+}
+</code></pre>
+<p>可以使用<code>tup.0</code>访问不同下标的元素</p>
+<ol>
+<li>数组（=栈）</li>
+</ol>
+<p>长度不可变、元素数据类型必须相同</p>
+<p><code>let a: [i32; 5] = [1, 2, 3, 4, 5];</code></p>
+<h2 id="_3">函数</h2>
+<p>声明时必须声明所有参数的数据类型。</p>
+<p>语句没有返回值，表达式不加分号可直接在函数体中返回计算结果</p>
+<p>指明返回类型的范例</p>
+<pre><code class="language-rust">  fn five() -&gt; i32 {
+      5
+    }
+</code></pre>
+<h2 id="_4">控制流</h2>
+<p>if和else-if的返回值数据类型必须相同</p>
+<p>let的右边可以使用if：`let number = if condition { 5 } else { 6 };</p>
+<p>可以通过命名循环且break加关键字指定中断的循环</p>
+<p>loop：无终止条件</p>
+<p>for用于遍历集合的元素</p>
+<h2 id="_5">所有权</h2>
+<p>关于堆和栈是如何分配内存的</p>
+<blockquote>
+<p>栈中的所有数据都必须占用已知且固定的大小。在编译时大小未知或大小可能变化的数据，要改为存储在堆上。 堆是缺乏组织的:当向堆放入数据时，你要请求一定大小的空间。内存分配器(memory allocator)在堆的某处找到一块足够大的空位，把它标记为已使用，并返回一个表示该位置地址的指针(pointer)。这个过程称作在堆上分配内存。</p>
+</blockquote>
+<p>栈：可以储存在栈中的数据类型都是已知大小的，并且当离开作用域时被移出栈，如果代码 的另一部分需要在不同的作用域中使用相同的值，可以快速简单地复制它们来创建一个新的独立实例。</p>
+<p>所有权的目的：管理<strong>堆</strong>数据</p>
+<p><strong>所有权的规则</strong></p>
+<ol>
+<li>
+<p>Rust 中的每一个值都有一个所有者(owner)。（assign）</p>
+</li>
+<li>
+<p>值在任一时刻有且只有一个所有者。（拷贝后原变量无效，见p79）</p>
+</li>
+<li>
+<p>当所有者(变量)离开作用域，这个值将被丢弃。</p>
+</li>
+</ol>
+<p>为了支持一个可变，可增长的数据，需要在堆上分配一块在编译时未知大小的内存来存放内容。这意味着:</p>
+<ol>
+<li>
+<p>必须在<strong>运行时</strong>向内存分配器(memory allocator)请求内存。</p>
+</li>
+<li>
+<p>需要一个当我们处理完 String 时将内存返回给分配器的方法。</p>
+</li>
+</ol>
+<p>对于第二步，Rust 采取了一个不同的策略:内存在拥有它的变量离开作用域（该作用域结束/变量被传送至其他作用域-&gt;将指向堆的指针重新绑定给新的变量）后就被自动释放。</p>
+<p>拷贝的过程为将指向堆的指针重新绑定给新的变量，原变量就此无效以保证不会发生内存的重复释放（也是为了保证值在任一时刻有且只有一个所有者）。且Rust 永远也不会自动创建数据的 “深拷贝”（深拷贝可以使用clone函数）。因此，任何自动的复制都可以被认为是对运行时性能影响较小的。</p>
+<p>因为对于堆上的数据一般只做指针的重新绑定，所以任何可能导致堆上数据发生变化的行为都会使原变量失效（例如将字符串作为参数传入函数中）。<strong>也就是说，指向堆的指针的位置一旦被变化（所有权发生转移），就会使原来绑定该指针的变量失效</strong></p>
+<p>copy trait：如果一个类型实现了 Copy trait，那么一个旧的变量在将其赋值给其他变量后仍然可用（等价于创造了一个副本）。Rust 不允许自身或其任何部分实现了 Drop trait（即在作用域结束后自动释放内存）的类型使用 Copy trait。可使用copy trait的类型如下</p>
+<ul>
+<li>
+<p>所有整数类型，比如 u32 。</p>
+</li>
+<li>
+<p>布尔类型，bool ，它的值是 true 和 false 。</p>
+</li>
+<li>
+<p>所有浮点数类型，比如 f64 。</p>
+</li>
+<li>
+<p>字符类型，char 。</p>
+</li>
+<li>
+<p>元组，当且仅当其包含的类型也都实现 Copy 的时候。比如，(i32, i32) 实现了 </p>
+</li>
+<li>
+<p>Copy ，但(i32, String) 就没有。</p>
+</li>
+</ul>
+<h2 id="_6">引用</h2>
+<p>引用(reference)像一个指针，因为它是一个地址，我们可以由此访问储存于该地址的属于其他变量的数据。 与指针不同，引用确保指向某个特定类型的有效值，它们允许你使用值但不获取其所有权。</p>
+<p>引用(默认)不允许修改引用的值。可以使用mut操作符使引用可修改被引用变量的值（并非对副本修改而是对本体修改）。</p>
+<blockquote>
+<p>可变引用有一个很大的限制:如果你有一个对该变量的可变引用，你就不能再创建对该变量的引用，无论是可变引用还是不可变引用。（保证同一时间内有且只有一个可变引用）。
+这个限制的好处是 Rust 可以在编译时就避免数据竞争。数据竞争(data race)类似于竞态条件，它可由这三个行为造成:</p>
+<p>• 两个或更多指针同时访问同一数据。 </p>
+<p>• 至少有一个指针被用来写入数据。  </p>
+<p>• 没有同步数据访问的机制。</p>
+</blockquote>
+<p>注意一个引用的作用域从声明的地方开始一直持续到最后一次使用为止。</p>
+<p>在具有指针的语言中，很容易通过释放内存时保留指向它的指针而错误地生成一个 悬垂指针 (dangling pointer)，所谓悬垂指针是其指向的内存可能已经被分配给其它持有者。相比之下，在 Rust 中编译器确保引用永远也不会变成悬垂状态:当你拥有一些数据的引用，编译器确保数据不会在其引用之前离开作用域。（在有引用的状态下被引用的数据不会被释放内存=被引用的数据被释放内存时引用也一起失效）</p>
+<h4 id="slice">slice类型（本质为引用）</h4>
+<p>字符串slice：slice 的数据结构存储了 slice 的开始位置和长度：<code>let slice = &amp;a[1..3];</code></p>
+<h2 id="copy">结构体（非Copy数据类型）</h2>
+<p>结构体定义了一个新的数据类型的命名空间，其中定义每一部分数据的名字和类型，我们称为字段(field)。Rust 并不允许只将某个字段标记为可变，除非将整个结构体实例标记为可变。</p>
+<p>同其他 、任何表达式一样，我们可以在函数体的最后一个表达式中构造一个结构体的新实例，来隐式地 、返回这个实例。</p>
+<pre><code class="language-rust">fn build_user(email: String, username: String) -&gt; User {
+    User {
+        active: true,  
+        username: username,
+        email: email,
+        sign_in_count: 1,
+    }
+}
+</code></pre>
+<p>结构体更新语法</p>
+<pre><code class="language-rust">let user2 = User {
+    email: String::from(&quot;another@example.com&quot;),
+    ..user1
+};// 使用结构体更新语法为一个 User 实例设置一个新的 email 值，不过其余值来自 user1 变量中实例的字段
+</code></pre>
+<p>结构更新语法就像带有 = 的赋值，因为它移动了数据，在这个例子中，总体上说我们在创建 user2 后不能就再使用 user1 （user1整个实例一起失效）了，因为 user1 的 username 字段中的 String 被移到 user2 中。可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上生命周期 (lifetimes)。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。如果你尝试在结构体中存储一个引用而不指定生命周期将是无效的。</p>
+<p>元组结构体是结构体，但没有字段名称。可以通过和元组一样的方式调用数据。
+类单元结构体(unit-like structs)因为它们类似于() ，即“元组类型”一节中提到的unit类型。类单元结构体常常在你想要在某个类型上实现 trait 但不需要在类型中存储数据的时候发挥作用。</p>
+<h4 id="_7">方法</h4>
+<pre><code class="language-rust">struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle { // 为了使函数定义于 `Rectangle` 的上下文中，我们开始了一个 `impl` 块（`impl` 是 _implementation_ 的缩写），这个 `impl` 块中的所有内容都将与 `Rectangle` 类型相关联。
+    fn area(&amp;self) -&gt; u32 {
+        self.width * self.height
+    }
+}
+</code></pre>
+<p>方法(method)与函数类似:它们使用 fn 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义，<strong>并且它们第一个参数总是self</strong>（一般是self的引用），它代表调用调用该方法的结构体实例。调用method的方法为<code>rect1.area()</code>。与字段同名的方法将被定义为只返回字段中的值（getter），而不做其他事情。</p>
+<p>method可以可变地调用self。</p>
+<blockquote>
+<p>在 C/C++ 语言中，有两个不同的运算符来调用方法:. 直接在对象上调用方法，而 - &gt; 在一个对象的指针上调用方法，这时需要先解引用(dereference)指针。换句话 说，如果 object 是一个指针，那么 object-&gt;something() 就像 (*object).something() 一样。rust不存在指针调用和实例调用的区别-&gt;不需要手动对指针解引用：</p>
+</blockquote>
+<pre><code class="language-rust">// p1是一个指向某实例的指针，以下代码是等效的
+p1.distance(&amp;p2);
+(&amp;p1).distance(&amp;p2);
+</code></pre>
+<h4 id="_8">关联函数</h4>
+<blockquote>
+<p>与方法的区别在于，方法是由实例调用（第一个参数必须为self），关联函数只是与该数据类型有关联的函数，并不作用于一个结构体的实例</p>
+</blockquote>
+<p>关联函数可以用于定义构造函数，即返回类型为结构体。关联函数位于结构体的命名空间中:<code>::</code> 语法用于关联函数和模块创建的命名空间。</p>
+<h2 id="-enums">枚举-enums</h2>
+<p>枚举允许你通过列举可能的成员(variants)来定义一个类型。枚举定义了一个<strong>数据类型</strong>的命名空间，可以集合使用不同的数据类型实例化的成员-&gt;对不同的数据类型进行包装。结构体中也可以定义一个被定义的枚举的数据类型变量，变量的值为枚举中某个成员被
+实例化后的实例。</p>
+<pre><code class="language-rust">enum IpAddr {
+    V4(u8,u8,u8,u8),
+    V6(String), // 也可以使用其他数据类型（包括自定义的结构体）初始化
+    // 枚举中的成员初始化使用的数据类型不需要相同
+}
+</code></pre>
+<p>枚举也可以使用<code>impl</code>来定义其上的method.</p>
+<h4 id="option">Option枚举</h4>
+<p>option枚举的成员一个有值，一个没值，从类型系统的角度来表达这个概念就意味着编译器需要检查是否处理了所有应该处理的情况。Rust 并没有空值，不过它确实拥有一个可以编码存在或不存在概念的枚举。这个枚举是Option\<T>，如下：</p>
+<pre><code class="language-rust">enum Option&lt;T&gt; {
+    None,
+    Some(T), 
+}
+
+fn main() {
+    let some_number = Some(5);
+    let some_char = Some('e');
+    let absent_number: Option&lt;i32&gt; = None; // 定义absent_number为i32类型的option枚举中的不存在概念/无效值
+}
+</code></pre>
+<p>\<T> 是一个泛型类型参数，意味着 Option 枚举的 Some 成员可以包含任意类型的数据，同时每一个用于 T 位置的具体类型使得 Option\<T> 整体作为不同的类型。因为 Option\<T> 和 T (这里 T 可以是任何类型)是不同的类型，编译器不允许像一个肯定有效的值那样使用Option\<T> 。在对 Option\<T> 进行运算之前必须将其转换为 T 。通常这能帮助我们捕获到空值最常见的问题之一:假设某值不为空但实际上为空的情况。</p>
+<blockquote>
+<p>为了拥有一个可能为空的值，你必须要显式的将其放入对应类型的 Option\<T> 中。接着，当使用这个值时，必须明确地处理值为空的情况。只要一个值不是 Option\<T> 类型，你就可以安全地认定它的值不为空。</p>
+</blockquote>
+<h4 id="match">match控制流</h4>
+<p>match可以用于对一个枚举集合类型的变量进行其与枚举中的成员匹配，必须穷尽。可以使用通配符<code>other</code>来指代剩余的所有情况（必须放在最后）。也可以使用占位符<code>_</code>来表示不使用这个值，它可以匹配任意值而不绑定到该值。</p>
+<pre><code class="language-rust">fn value_in_cents(coin: Coin) -&gt; u8 {
+    match coin { //match 后跟一个表达式
+        Coin::Penny =&gt; {
+            println!(&quot;Lucky penny!&quot;);
+            1
+        }
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter =&gt; 25,
+    } 
+}
+</code></pre>
+<pre><code class="language-rust">fn main() {
+    fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; {
+        match x {
+            None =&gt; None,
+            Some(i) =&gt; Some(i + 1),
+        }
+    }
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+}
+</code></pre>
+<pre><code class="language-rust"> fn main() {
+    let dice_roll = 9;
+    match dice_roll {
+        3 =&gt; add_fancy_hat(),
+        7 =&gt; remove_fancy_hat(),
+        _ =&gt; (),
+    }
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {} 
+}
+</code></pre>
+<h4 id="if-let">if-let简洁控制流</h4>
+<p>if let 语法获取通过等号分隔的一个模式和一个表达式。它的工作方式与match 相同，这里 的表达式对应 match 而模式则对应第一个分支。该语法不要求穷尽性检查。</p>
+<pre><code class="language-rust">let config_max = Some(3u8);
+if let Some(max) = config_max {
+    println!(&quot;The maximum is configured to be {}&quot;, max);
+} // 模式是 Some(max) ，max 绑定为 Some 中的值。
+</code></pre>
+<h2 id="_9">模块系统</h2>
+<p>• <strong>包</strong>(Packages):Cargo 的一个功能，它允许你构建、测试和分享 crate。</p>
+<p>• <strong>Crates</strong> :一个模块的树形结构，它形成了库或二进制项目。  </p>
+<p>• <strong>模块</strong>(Modules)和 <strong>use</strong>:允许你控制作用域和路径的私有性。  </p>
+<p>• <strong>路径</strong>(path):一个命名例如结构体、函数或模块等项的方式。</p>
+<p>Rust提供将包分成多个 crate，将 crate 分成模块，通过指定绝对或相对路径从一个模块引用另一个模块中定义的项的方式，并通过这些方式组织模块系统。</p>
+<blockquote>
+<p>一些关于模块组织的方法/规则：<strong>从 crate 根节点开始</strong>、<strong>声明模块</strong>、<strong>声明子模块</strong>、<strong>模块中的代码路径</strong>、<strong>私有 vs 公用</strong>、<strong><code>use</code> 关键字</strong></p>
+</blockquote>
+<h4 id="crate">包和crate</h4>
+<ul>
+<li>
+<p>crate 是Rust在编译时最小的代码单位，它有两种形式:</p>
+<ol>
+<li>
+<p>二进制项：二进制项可以被编译为可执行程序，比如一个命令行程序或者一个服务器。它们<strong>必须有一个 main 函数</strong>来定义当程序被执行的时候所需要做的事情。crate root 是一个源文件，构成你crate 的根模块。</p>
+</li>
+<li>
+<p>库：库并没有 main 函数，它们也不会编译为可执行程序，它们提供一些诸如函数之类的东西，使其他项目也能使用这些东西。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>包(package)是提供一系列功能的一个或者多个 crate。包中可以包含<strong>至多一个</strong>库 crate。包中可以包含任意多个二进制 crate，但是必须至少包含一个 crate(无论是库的还是二进制的)。</p>
+</li>
+</ul>
+<p>库或二进制项crate都有一个入口crate（crate根文件），对于一个库crate而言是<em>src/lib.rs</em>，在二进制项中一般位于<em>src/main.rs</em>，由这个入口crate开始，编译器将寻找需要编译的代码。</p>
+<h4 id="_10">定义模块来控制作用域与私有性</h4>
+<p>我们定义一个模块，是以 mod 关键字为起始，然后指定模块的名字，并且用大括号包围模块的主体。在模块内，我们还可以定义其他的模块。模块还可以保存一些定义的其他项，比如结构体、 枚举、常量、特性、或者函数。crate也是一个模块，一般是位于模块树最底端的隐式模块。</p>
+<p>在 Rust 中，默认<strong>所有项</strong>（函数、方法、结构体、枚举、模块和常量）对父模块都是私有的。父模块中的项不能使用子模块中的私有项，但是子模块中的项可以使用它们父模块中的项。这是因为子模块封装并隐藏了它们的实现详情，但是子模块可以看到它们定义的上下文。</p>
+<p>使模块公有并不使其内容也是公有的。模块上的 <code>pub</code> 关键字只允许其父模块引用它，而不允许访问内部代码。因为模块是一个容器，只是将模块变为公有能做的其实并不太多；同时需要更深入地选择将一个或多个项变为公有。</p>
+<p>简单来说：子-&gt;父OK，父-&gt;子需要子为公开。将module设为pub只能保证父module能访问，但是子module的所有字段、函数等对于父module依旧是私有的。结构体同理。如果一个结构体具有私有字段，结构体需要提供一个公共的关联函数（与结构体同级可以访问私有字段）来构造该结构体的实例。</p>
+<h4 id="_11">引用模块项目的路径</h4>
+<p>路径有两种形式:</p>
+<p>• 绝对路径(absolute path)是以 crate 根(root)开头的全路径;对于外部 crate 的代码， 是以 crate 名开头的绝对路径，对于当前 crate 的代码，则以字面值 crate 开头。</p>
+<p>• 相对路径(relative path)从当前模块开始，以 self 、super 或定义在当前模块中的标识符开头。我们可以通过在路径的开头使用 <code>super</code> ，从父模块开始构建相对路径，而不是从当前模块或者 crate 根开始。这类似以 <code>..</code> 语法开始一个文件系统路径。</p>
+<p>在作用域中增加 <code>use</code> 和路径类似于在文件系统中创建软连接（符号连接，symbolic link）。注意 <code>use</code> 只能创建 <code>use</code> 所在的特定作用域内的短路径。要想使用 <code>use</code> 将函数的父模块引入作用域，我们必须在调用函数时指定父模块，这样可以清晰地表明函数不是在本地定义的，同时使完整路径的重复度最小化。</p>
+<p>使用 <code>use</code> 将两个同名类型引入同一作用域这个问题有另一个解决办法：在这个类型的路径后面，我们使用 <code>as</code> 指定一个新的本地名称或者别名。范例如下:</p>
+<pre><code class="language-rust">use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -&gt; Result {
+    // --snip--
+}
+
+fn function2() -&gt; IoResult&lt;()&gt; {
+    // --snip--
+}
+</code></pre>
+<p>使用 <code>use</code> 关键字，将某个名称导入当前作用域后，这个名称在此作用域中就可以使用了，但它对此作用域之外还是私有的。如果想让其他人调用此代码时，也能够正常使用这个名称，就好像它本来就在当前作用域一样，那我们可以将 <code>pub</code> 和 <code>use</code> 合起来使用。这种技术被称为 “<em>重导出</em>（<em>re-exporting</em>）”：我们不仅将一个名称导入了当前作用域，还允许别人把它导入他们自己的作用域。例如：</p>
+<pre><code class="language-rust">mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+}
+// 现在可以用路径`restaurant::hosting::add_to_waitlist()`调用函数add_to_waitlist。
+</code></pre>
+<ul>
+<li>
+<p><strong>使用外部包</strong>
+首先在<em>Cargo.toml</em>中添加依赖项，如<code>rand = "0.8.5"</code>。然后在项目包中使用<code>use</code>将要使用的module引入作用域。</p>
+</li>
+<li>
+<p><strong>嵌套路径来消除大量的use行</strong></p>
+</li>
+</ul>
+<pre><code class="language-rust">use std::cmp::Ordering; 
+use std::io;
+// to be simplified
+use std::{cmp::Ordering, io};
+</code></pre>
+<h4 id="_12">将模块拆分为多个文件</h4>
+<p>将模块声明保留，其他对于模块的使用代码保留，将模块代码移动至与模块同名的文件中，编译器会自动加载。</p>
+<h2 id="_13">集合</h2>
+<p>集合指向的数据是储存在堆上的。</p>
+<ul>
+<li>
+<p><em>vector</em> 允许我们一个挨着一个地储存一系列数量可变的值</p>
+</li>
+<li>
+<p><strong>字符串</strong>（<em>string</em>）是字符的集合。我们之前见过 <code>String</code> 类型，不过在本章我们将深入了解。</p>
+</li>
+<li>
+<p><strong>哈希 map</strong>（<em>hash map</em>）允许我们将值与一个特定的键（key）相关联。这是一个叫做 <em>map</em> 的更通用的数据结构的特定实现。</p>
+</li>
+</ul>
+<h4 id="vector">vector</h4>
+<p><a href="https://doc.rust-lang.org/std/vec/struct.Vec.html">官方文档中vector部分</a></p>
+<p>vector 只能储存相同类型的值，<code>Vec&lt;T&gt;</code> 是一个由标准库提供的类型，它可以存放任何类型。</p>
+<p>vector可以使用索引或<code>get</code>方法。</p>
+<ul>
+<li>
+<p>使用索引访问vector时，使用 <code>&amp;</code> 和 <code>[]</code> 会得到一个索引位置元素的引用:<code>let i : &amp;i32 = &amp;v[2];</code>。-&gt;当索引超出vector边界，程序Panic。</p>
+</li>
+<li>
+<p>当使用索引作为参数调用 <code>get</code> 方法时，会得到一个可以用于 <code>match</code> 的 <code>Option&lt;&amp;T&gt;</code>:<code>let i : Option&lt;&amp;i32&gt; = v.get(2);</code>。-&gt;当索引超出vector边界，<code>get</code>方法返回<code>None</code> 值。</p>
+</li>
+</ul>
+<p>注意引用的规则（不可同时存在可变引用与不可变引用、注意引用的作用域..）-&gt;一旦对vector中的某一项进行了引用，vector将不能再被编辑（包括插入和删除）
+可以使用枚举包装不同数据类型的成员，然后创造枚举类型的vector来储存不同数据类型的数据，例如：</p>
+<pre><code class="language-rust">    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from(&quot;blue&quot;)),
+        SpreadsheetCell::Float(10.12),
+    ];
+</code></pre>
+<p>vector离开作用域时失效。</p>
+<h4 id="string">String</h4>
+<p><a href="https://doc.rust-lang.org/std/string/struct.String.html">官方文档中的String部分</a></p>
+<p>很多 <code>Vec</code> 可用的操作在 <code>String</code> 中同样可用，事实上 <code>String</code> 被实现为一个带有一些额外保证、限制和功能的字节 vector 的封装。</p>
+<p><code>&amp;String</code> 可以被 <strong>强转</strong>（<em>coerced</em>）成 <code>&amp;str</code>。</p>
+<p>Rust 的字符串不支持索引，取而代之可以使用 <code>[]</code>和一个 range 来创建<strong>含特定字节数</strong>的字符串 slice。也就是说，slice包含的字符串部分和组成单个字母所需的字节数有关，例如：</p>
+<pre><code class="language-rust">let hello = &quot;Здравствуйте&quot;;
+let s = &amp;hello[0..4];
+// 这里，`s` 会是一个 `&amp;str`，它包含字符串的头四个字节。因为这些字母都是两个字节长的，所以这意味着 `s` 将会是 “Зд”。
+</code></pre>
+<p>遍历字符串需要表明遍历的是字符还是字节，两者区别如下：</p>
+<pre><code class="language-rust">// in chars
+for c in &quot;Зд&quot;.chars() {
+    println!(&quot;{c}&quot;);
+}
+// print out:
+// З
+// д
+
+// in bytes
+for b in &quot;Зд&quot;.bytes() {
+    println!(&quot;{b}&quot;);
+}
+// print out:
+// 208
+// 151
+// 208
+// 180
+</code></pre>
+<h4 id="hashmap">HashMap</h4>
+<p><a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html">官方文档中哈希表部分</a></p>
+<p><code>HashMap&lt;K, V&gt;</code> 类型储存了一个键类型 <code>K</code> 对应一个值类型 <code>V</code> 的映射。它通过一个 <strong>哈希函数</strong>（<em>hashing function</em>）来实现映射，决定如何将键和值放入内存中。
+使用哈希表时，必须首先 <code>use</code> 标准库中集合部分的 <code>HashMap</code>。哈希 map 将数据储存在堆上，所有的键必须是同类型，值也必须是同类型。</p>
+<p>通过键值访问值时，<code>get</code> 方法返回 <code>Option&lt;&amp;V&gt;</code>，如果某个键在哈希 map 中没有对应的值，<code>get</code> 会返回 <code>None</code>。对于实现了Copy trait的类型，一般使用<code>copied</code> 方法来获取一个 <code>Option&lt;V&gt;</code> 而不是 <code>Option&lt;&amp;V&gt;</code>。还可以使用<code>unwrap_or()</code> 在哈希表中没有该键所对应的项时将其设置为零。</p>
+<p>对于像 <code>i32</code> 这样的实现了 <code>Copy</code> trait 的类型，其值可以拷贝进哈希 map。对于像 <code>String</code> 这样拥有所有权的值，其值将被移动而哈希 map 会成为这些值的所有者。如果将值的引用插入哈希 map，这些值本身将不会被移动进哈希 map。但是这些引用指向的值必须至少在哈希 map 有效时也是有效的。</p>
+<p>通过<code>Entry</code> 的 <code>or_insert</code> 方法可以实现只在键没有对应值时插入键值对，它在键对应的值存在时就<strong>返回这个值的可变引用</strong>，如果不存在则将参数作为新值插入并<strong>返回新值的可变引用</strong>。例如可以通过如下的代码统计单词出现次数：</p>
+<pre><code class="language-rust">let mut map = HashMap::new(); 
+for word in text.split_whitespace() { 
+    let count = map.entry(word).or_insert(0);// 若该单词没有出现过，返回一个键为该单词、值为0的键值对的可变引用
+    *count += 1; // 对引用进行计算前需要解引用
+}
+</code></pre>
+<h2 id="_14">错误处理</h2>
+<h4 id="-panic">不可恢复的错误-使用panic!处理</h4>
+<p>代码发生panic有两种可能：</p>
+<ol>
+<li>
+<p>执行会造成代码 panic 的操作（比如访问超过数组结尾的内容）</p>
+</li>
+<li>
+<p>显式调用 <code>panic!</code> 宏</p>
+</li>
+</ol>
+<blockquote>
+<p>当出现 panic 时，程序默认会开始 <strong>展开</strong>（<em>unwinding</em>），这意味着 Rust 会回溯栈并清理它遇到的每一个函数的数据，不过这个回溯并清理的过程有很多工作。另一种选择是直接 <strong>终止</strong>（<em>abort</em>），这会不清理数据就退出程序。
+那么程序所使用的内存需要由操作系统来清理。如果你需要项目的最终二进制文件越小越好，panic 时通过在 <em>Cargo.toml</em> 的 <code>[profile]</code> 部分增加 <code>panic = 'abort'</code>，可以由展开切换为终止。</p>
+</blockquote>
+<h4 id="-result">可恢复的错误-使用result处理</h4>
+<pre><code class="language-rust">enum Result&lt;T, E&gt; {
+    Ok(T), // `T` 代表成功时返回的 `Ok` 成员中的数据的类型
+    Err(E), // `E` 代表失败时返回的 `Err` 成员中的错误的类型
+}
+// `Result` 枚举和其成员被导入到了 prelude 中，不需要指定`Result::`
+</code></pre>
+<p>使用match匹配result类型：</p>
+<pre><code class="language-rust">use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let greeting_file_result = File::open(&quot;hello.txt&quot;);
+
+    let greeting_file = match greeting_file_result {
+        Ok(file) =&gt; file,
+        Err(error) =&gt; match error.kind() {
+            ErrorKind::NotFound =&gt; match File::create(&quot;hello.txt&quot;) { // 一旦错误类型为找不到文件，尝试创造文件
+                Ok(fc) =&gt; fc,
+                Err(e) =&gt; panic!(&quot;Problem creating the file: {:?}&quot;, e),
+            },
+            other_error =&gt; {
+                panic!(&quot;Problem opening the file: {:?}&quot;, other_error);
+            }
+        },
+    };
+}
+</code></pre>
+<p><code>unwrap</code> 方法：如果 <code>Result</code> 值是成员 <code>Ok</code>，<code>unwrap</code> 会返回 <code>Ok</code> 中的值。如果 <code>Result</code> 是成员 <code>Err</code>，<code>unwrap</code> 会为我们调用 <code>panic!</code>。 <code>expect</code> 方法同理，但可以向 <code>expect</code> 传入参数作为调用 <code>panic!</code>时使用的错误信息。一个例子：</p>
+<pre><code class="language-rust">use std::fs::File;
+
+fn main() {
+    let greeting_file = File::open(&quot;hello.txt&quot;)
+        .expect(&quot;hello.txt should be included in this project&quot;);
+}
+</code></pre>
+<p>传播错误：在error发生时将一个 <code>Err(e)</code> 错误返回给调用它的代码，也就是说调用它的函数返回类型为 <code>Result&lt;T, E&gt;</code> -&gt;调用这个函数的代码最终会得到一个包含对应信息的 <code>Ok</code> 值，或者一个包含 <code>Error</code> 的 <code>Err</code> 值。
+传播错误可以使用简写 <code>?</code> 运算符：</p>
+<pre><code class="language-rust">use std::fs::File;
+use std::io::{self, Read};
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    let mut username_file = File::open(&quot;hello.txt&quot;)?;// 问号省略的部分即为`return Err(e)`
+    let mut username = String::new();
+    username_file.read_to_string(&amp;mut username)?;
+    Ok(username)
+}
+</code></pre>
+<p><code>match</code> 表达式与 <code>?</code> 运算符所做的有一点不同：<code>?</code> 运算符所使用的错误值被传递给了 <code>from</code> 函数，它定义于标准库的 <code>From</code> trait 中，其用来将错误从一种类型转换为另一种类型。当 <code>?</code>运算符调用 <code>from</code> 函数时，收到的错误类型被转换为由当前函数返回类型所指定的错误类型。<code>?</code> 运算符只能被用于返回值（返回 <code>Result&lt;T, E&gt;</code> ）与 <code>?</code> 作用的值相兼容的函数。</p>
+<p><code>?</code> 也可用于 <code>Option&lt;T&gt;</code> 值。如同对 <code>Result</code> 使用 <code>?</code> 一样，只能在返回 <code>Option</code>的函数中对 <code>Option</code> 使用 <code>?</code>。在 <code>Option&lt;T&gt;</code> 上调用 <code>?</code> 运算符的行为与 <code>Result&lt;T, E&gt;</code> 类似：如果值是 <code>None</code>，此时 <code>None</code> 会从函数中提前返回。如果值是 <code>Some</code>，<code>Some</code> 中的值作为表达式的返回值同时函数继续。</p>
+<blockquote>
+<p>函数通常都遵循 <strong>契约</strong>（<em>contracts</em>）：它们的行为只有在输入满足特定条件时才能得到保证。如果函数有一个特定类型的参数，可以在知晓编译器已经确保其拥有一个有效值的前提下进行你的代码逻辑。例如，如果你使用了一个并不是 <code>Option</code> 的类型，则程序期望它是 <strong>有值</strong> 的并且不是 <strong>空值</strong>。你的代码无需处理 <code>Some</code> 和 <code>None</code> 这两种情况，它只会有一种情况就是绝对会有一个值。尝试向函数传递空值的代码甚至根本不能编译，所以你的函数在运行时没有必要判空。</p>
+</blockquote>
+<h2 id="trait">泛型、Trait 和生命周期</h2>
+<h4 id="_15">泛型</h4>
+<p>泛型是具体类型或其他属性的抽象替代，允许我们使用一个可以代表多种类型的占位符来替换特定类型。泛型的用法： <code>fn largest&lt;T&gt;(list: &amp;[T]) -&gt; &amp;T {</code> 。可以这样理解这个定义：函数 <code>largest</code> 有泛型类型 <code>T</code>。它有个参数 <code>list</code>，其类型是元素为 <code>T</code> 的 slice。<code>largest</code> 函数会返回一个与 <code>T</code> 相同类型的引用。</p>
+<p>可以使用 <code>&lt;T: std::cmp::PartialOrd&gt;</code> 来确保泛型能比较，同理可以确保泛型时实现了某种trait的类型。</p>
+<p>同样也可以用 <code>&lt;&gt;</code> 语法来定义结构体，它包含一个或多个泛型参数类型字段：</p>
+<pre><code class="language-rust">struct Point&lt;T, U&gt; { 
+    x: T, 
+    y: U, 
+}
+</code></pre>
+<p>定义结构体 <code>Point&lt;T&gt;</code>，在其上实现名为 <code>x</code> 的方法：</p>
+<pre><code class="language-rust">struct Point&lt;T&gt; {
+    x: T,
+    y: T,
+}
+
+impl&lt;T&gt; Point&lt;T&gt; {
+    fn x(&amp;self) -&gt; &amp;T {
+        &amp;self.x
+    }
+}
+</code></pre>
+<p>定义方法时也可以为泛型指定限制（constraint）。例如，可以选择为 <code>Point&lt;f32&gt;</code> 实例实现方法，而不是为泛型 <code>Point</code> 实例:</p>
+<pre><code class="language-rust">impl Point&lt;f32&gt; {
+    fn distance_from_origin(&amp;self) -&gt; f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+// 这段代码意味着 `Point&lt;f32&gt;` 类型会有一个方法 `distance_from_origin`，而其他 `T` 不是 `f32` 类型的 `Point&lt;T&gt;` 实例则没有定义此方法。
+</code></pre>
+<h4 id="trait_1">trait：定义共同行为</h4>
+<p><a href="https://doc.rust-lang.org/reference/items/traits.html">trait的文档部分</a></p>
+<blockquote>
+<p>本质为定义了一个特性，不同的数据类型可以为实现这个特性提供方法，来达到让不同的数据类型拥有一个特性</p>
+</blockquote>
+<p><em>trait</em> 定义了某个特定类型拥有可能与其他类型共享的功能。可以通过 trait 以一种抽象的方式定义共同行为。可以使用 <em>trait bounds</em> 指定泛型是任何拥有特定行为的类型。
+<em>trait</em> 定义是一种将方法签名组合起来的方法，目的是定义一个实现某些目的所必需的行为的集合。例如：</p>
+<pre><code class="language-rust">pub trait Summary {
+    fn summarize(&amp;self) -&gt; String;
+}
+</code></pre>
+<p>这里使用 <code>trait</code> 关键字来声明一个 trait，后面是 trait 的名字，在这个例子中是 <code>Summary</code>。我们也声明 <code>trait</code> 为 <code>pub</code> 以便依赖这个 crate 的 crate 也可以使用这个 trait。在大括号中声明描述实现这个 trait 的类型所需要的行为的方法签名，在这个例子中是 <code>fn summarize(&amp;self) -&gt; String</code>。</p>
+<p>可以在定义方法签名后，在trait的声明处提供一个默认的实现方法，这样当为某个特定类型实现 trait 时，可以选择保留或重载每个方法的默认行为。例如：</p>
+<pre><code class="language-rust">pub trait Summary {
+    fn summarize(&amp;self) -&gt; String {
+        String::from(&quot;(Read more...)&quot;)
+    }
+}
+</code></pre>
+<p>同时，默认实现允许调用相同 trait 中的其他方法，哪怕这些方法没有默认实现。注意无法从相同方法的重载实现中调用默认方法。</p>
+<p>当声明了trait之后，需要在类型上实现trait：</p>
+<pre><code class="language-rust">pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArticle {
+    fn summarize(&amp;self) -&gt; String {
+        format!(&quot;{}, by {} ({})&quot;, self.headline, self.author, self.location)
+    }
+}
+</code></pre>
+<p>在使用时，需要将trait引入作用域。只有在 trait 或类型至少有一个属于当前 crate 时，我们才能对类型实现该 trait。例如，可以为 <code>aggregator</code> crate 的自定义类型 <code>Tweet</code> 实现如标准库中的 <code>Display</code> trait，这是因为 <code>Tweet</code> 类型位于 <code>aggregator</code> crate 本地的作用域中。类似地，也可以在 <code>aggregator</code> crate 中为 <code>Vec&lt;T&gt;</code> 实现 <code>Summary</code>，这是因为 <code>Summary</code> trait 位于 <code>aggregator</code> crate 本地作用域中。</p>
+<p>不能为外部类型实现外部 trait。例如，不能在 <code>aggregator</code> crate 中为 <code>Vec&lt;T&gt;</code> 实现 <code>Display</code>trait。这是因为 <code>Display</code> 和 <code>Vec&lt;T&gt;</code> 都定义于标准库中，它们并不位于 <code>aggregator</code> crate 本地作用域中。</p>
+<p>如果将实现trait的某种类型作为参数传入函数，这个函数就可以调用trait内定义的一些方法，例如：</p>
+<pre><code class="language-rust">pub fn notify(item: &amp;impl Summary) { // 参数可以为任何实现了Summary trait的类型
+    println!(&quot;Breaking news! {}&quot;, item.summarize());
+}
+</code></pre>
+<p>如果需要参数同时满足实现两个不同的trait，有如下两种写法：</p>
+<pre><code class="language-rust">pub fn notify(item: &amp;(impl Summary + Display)) {
+pub fn notify&lt;T: Summary + Display&gt;(item: &amp;T) { // 使用trait bound
+</code></pre>
+<p>返回实现trait的类型可以如此书写函数签名：</p>
+<pre><code class="language-rust">fn returns_summarizable() -&gt; impl Summary {
+// 其中Summary为一个trait类型
+</code></pre>
+<p>通过使用 <code>impl Summary</code> 作为返回值类型，我们指定了 <code>returns_summarizable</code> 函数返回某个实现了 <code>Summary</code> trait 的类型，但是不确定其具体的类型。并且，函数体中可能返回的类型必须是一致的，假如返回两个不同但是同样实现了目标trait的类型也不能通过编译。</p>
+<p>可以对任何实现了特定 trait 的类型有条件地实现 trait。对任何满足特定 trait bound 的类型实现 trait 被称为 <em>blanket implementations</em>，它们被广泛的用于 Rust 标准库中。例如，标准库为任何实现了 <code>Display</code> trait 的类型实现了 <code>ToString</code> trait。这个 <code>impl</code> 块看起来像这样：</p>
+<pre><code class="language-rust">impl&lt;T: Display&gt; ToString for T {
+    // --snip--
+}
+</code></pre>
+<p>因为标准库有了这些 blanket implementation，我们可以对任何实现了 <code>Display</code> trait 的类型调用由 <code>ToString</code> 定义的 <code>to_string</code> 方法。同理，我们可以对任何实现了traitA的类型实现traitB来补充方法。</p>
+<h4 id="_16">生命周期</h4>
+<p>生命周期是针对<strong>引用</strong>的，为了保证实际使用时的引用是有效的，需要我们给出泛型生命周期的参数。一个关于生命周期的示例：</p>
+<pre><code class="language-rust">fn main() {
+    let r;                // ---------+-- 'a
+                          //          |
+    {                     //          |
+        let x = 5;        // -+-- 'b  |
+        r = &amp;x;           //  |       |
+    }                     // -+       |
+                          //          |
+    println!(&quot;r: {}&quot;, r); //          |
+}                         // ---------+
+// 这里将 `r` 的生命周期标记为 `'a` 并将 `x` 的生命周期标记为 `'b`。
+</code></pre>
+<p>在编译时，Rust 比较这两个生命周期的大小，并发现 <code>r</code> 拥有生命周期 <code>'a</code>，不过它引用了一个拥有生命周期 <code>'b</code> 的对象。程序被拒绝编译，因为生命周期 <code>'b</code> 比生命周期 <code>'a</code> 要小：被引用的对象比它的引用者存在的时间更短。</p>
+<p>生命周期注解<strong>并不改变任何引用的生命周期的长短</strong>。相反它们描述了<strong>多个引用生命周期相互的关系</strong>（也就是两个引用是否保持同步的生命周期等），而不影响其生命周期。与当函数签名中指定了泛型类型参数后就可以接受任何类型一样，当指定了泛型生命周期后函数也能接受任何生命周期的引用。生命周期参数注解位于引用的 <code>&amp;</code> 之后，并有一个空格来将引用类型与生命周期注解分隔开。</p>
+<pre><code class="language-rust">&amp;i32        // 引用
+&amp;'a i32     // 带有显式生命周期的引用
+&amp;'a mut i32 // 带有显式生命周期的可变引用
+</code></pre>
+<p>例如如果函数有一个生命周期 <code>'a</code> 的 <code>i32</code> 的引用的参数 <code>x</code>。还有另一个同样是生命周期 <code>'a</code> 的 <code>i32</code> 的引用的参数 <code>y</code>。这两个生命周期注解意味着引用 <code>x</code> 和 <code>y</code> 必须与这泛型生命周期存在得一样久。例如：</p>
+<pre><code class="language-rust">fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
+</code></pre>
+<p>这个函数签名说明<strong>对于某些生命周期 <code>'a</code></strong>，函数会获取两个参数，它们都是与生命周期 <code>'a</code> 存在得一样久的字符串 slice。函数会返回一个同样也与生命周期 <code>'a</code> 存在得一样久的字符串 slice。它的实际含义是 <code>longest</code> 函数返回的引用的生命周期与函数参数所引用的值的生命周期的<strong>较小者</strong>一致。当具体的引用被传递给 <code>longest</code> 时，被 <code>'a</code> 所替代的具体生命周期是 <code>x</code> 的作用域与 <code>y</code> 的作用域<strong>相重叠的那一部分</strong>。换一种说法就是泛型生命周期 <code>'a</code> 的具体生命周期等同于 <code>x</code> 和 <code>y</code> 的生命周期中较小的那一个。因为我们用相同的生命周期参数 <code>'a</code> 标注了返回的引用值，所以返回的引用值就能保证在 <code>x</code> 和 <code>y</code> 中较短的那个生命周期结束之前保持有效。</p>
+<p><code>longest</code> 函数并不需要知道 <code>x</code> 和 <code>y</code>具体会存在多久，而只需要知道有<strong>某个可以被 <code>'a</code> 替代的作用域</strong>将会满足这个签名。当在函数中使用生命周期注解时，这些注解出现在函数签名中，而不存在于函数体中的任何代码中。生命周期注解成为了函数约定的一部分，非常像签名中的类型。</p>
+<blockquote>
+<p>总结：函数签名注明了一个<strong>泛型</strong>生命周期，在实际传入参数后会根据传入参数情况实例化成一个具体的生命周期，根据不同变量的生命周期注解不同，被具体化的生命周期也随之变化</p>
+</blockquote>
+<p>存放引用的结构体</p>
+<pre><code class="language-rust">struct ImportantExcerpt&lt;'a&gt; { 
+    part: &amp;'a str, 
+}
+// `ImportantExcerpt` 的实例不能比其 `part` 字段中的引用存在的更久。
+</code></pre>
+<p>静态生命周期
+这里有一种特殊的生命周期值得讨论：<code>'static</code>，其生命周期<strong>能够</strong>存活于整个程序期间。所有的字符串字面值都拥有 <code>'static</code> 生命周期，我们可以选择像下面这样标注出来：<code>let s: &amp;'static str = "I have a static lifetime.";</code></p>
+<h3 id="after-chapter11">After Chapter11</h3>
+<p>TODO
+感觉上面的暂时够用了，剩下的等我看到不懂的代码再补</p>
+<h4 id="arc-atomic-reference-counted">Arc - atomic reference counted</h4>
+<p><code>Arc</code> 是一种允许多个所有者共享数据并在不同线程之间安全地访问它所指向的数据的智能指针。</p>
+<p><code>Arc</code> 和多个不可变引用之间有几个重要的区别：</p>
+<ol>
+<li>
+<p><strong>线程安全性</strong>：</p>
+<ul>
+<li>
+<p><code>Arc</code> 是原子引用计数类型，可以安全地在<strong>多个线程</strong>之间共享。它通过使用原子操作来确保引用计数的线程安全性，因此可以安全地在并发环境中使用。</p>
+</li>
+<li>
+<p>多个不可变引用只能在单个线程中使用，因为它们没有内置的同步机制来处理多线程并发访问的问题。如果尝试在多个线程中共享不可变引用，就可能会导致数据竞争和不安全的行为。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>内存管理</strong>：</p>
+<ul>
+<li>
+<p><code>Arc</code> 允许多个所有者共享数据，并在所有所有者都释放它时销毁数据。这意味着即使在程序的不同部分有多个引用，数据也只会在最后一个引用被销毁时释放。</p>
+</li>
+<li>
+<p>多个不可变引用是针对单个所有者的。如果希望在不同部分使用相同的数据，必须通过复制或移动数据来传递所有权，这可能会导致内存拷贝和额外的内存开销。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>可变性</strong>：</p>
+<ul>
+<li>
+<p><code>Arc</code> 只允许不可变引用。因为它的目标是允许多个所有者共享数据，并在多个所有者之间进行安全的并发访问，所以不支持可变引用。如果需要在多个线程之间共享可变数据，可以考虑使用 <code>Mutex</code>、<code>RwLock</code> 等类型。</p>
+</li>
+<li>
+<p>多个不可变引用也只能提供不可变性，无法直接支持可变引用。如果希望在单个线程中进行可变访问，则需要使用可变引用（<code>&amp;mut</code>）。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.path"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

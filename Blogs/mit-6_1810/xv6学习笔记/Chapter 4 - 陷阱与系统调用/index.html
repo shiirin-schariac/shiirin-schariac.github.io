@@ -1,0 +1,1715 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Chapter%203%20-%20%E9%A1%B5%E8%A1%A8/">
+      
+      
+        <link rel="next" href="../../../../partialife/a%20glimpse/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Chapter 4 陷阱与系统调用 - Wo Es war, soll Ich werden.</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-1-riscv" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Wo Es war, soll Ich werden." class="md-header__button md-logo" aria-label="Wo Es war, soll Ich werden." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wo Es war, soll Ich werden.
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4   陷阱与系统调用
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  不看也行
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../partialife/a%20glimpse/" class="md-tabs__link">
+          
+  
+  Partialife
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E4%B8%9C%E6%96%B9/%E8%BE%9B%E8%AF%8D%E5%8D%81%E9%80%89/" class="md-tabs__link">
+          
+  
+  个人文学索引
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Wo Es war, soll Ich werden." class="md-nav__button md-logo" aria-label="Wo Es war, soll Ich werden." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wo Es war, soll Ich werden.
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    不看也行
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blogs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blogs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rust学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%BD%BF%E7%94%A8mkdocs%E5%92%8CGitHub%20Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用mkdocs和GitHub Pages搭建个人博客
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Mit 6 1810
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Mit 6 1810
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文件系统学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_3%20PageTable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 3 PageTable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_4%20Trap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 4 Trap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/Lab_5%20COW/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 5 COW
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lab/_Preparation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+     Preparation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Xv6学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Xv6学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%201%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A7%88/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1   操作系统概览
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%202%20-%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%84%E7%BB%87/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2   操作系统组织
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%203%20-%20%E9%A1%B5%E8%A1%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3   页表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 4   陷阱与系统调用
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4   陷阱与系统调用
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-1-riscv" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-1 RISCV的硬件行为
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-2 用户空间的trap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-2 用户空间的trap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uservec" class="md-nav__link">
+    <span class="md-ellipsis">
+      uservec（用户态）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usertrap-" class="md-nav__link">
+    <span class="md-ellipsis">
+      usertrap（用户态 -&gt; 内核态）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usertrapret-" class="md-nav__link">
+    <span class="md-ellipsis">
+      usertrapret（内核态 -&gt; 用户态）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userret" class="md-nav__link">
+    <span class="md-ellipsis">
+      userret（用户态）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-3 代码阅读：调用系统调用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-4 代码阅读：系统调用参数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-5-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-5 内核空间的trap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-6 缺页故障
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-7 真实世界
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Partialife
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Partialife
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/a%20glimpse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A glimpse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/partial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/partiallllife/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Partiallllife
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Kashi
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Kashi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../partialife/kashi/%E3%83%9E%E3%82%B8%E3%83%83%E3%82%AF%E3%82%A2%E3%83%AF%E3%83%BC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マジックアワー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    个人文学索引
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            个人文学索引
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    东方
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            东方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E4%B8%9C%E6%96%B9/%E8%BE%9B%E8%AF%8D%E5%8D%81%E9%80%89/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    辛词十选
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    西方
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            西方
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%B8%AA%E4%BA%BA%E6%96%87%E5%AD%A6%E7%B4%A2%E5%BC%95/%E8%A5%BF%E6%96%B9/Poems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Poems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-1-riscv" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-1 RISCV的硬件行为
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-2 用户空间的trap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-2 用户空间的trap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uservec" class="md-nav__link">
+    <span class="md-ellipsis">
+      uservec（用户态）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usertrap-" class="md-nav__link">
+    <span class="md-ellipsis">
+      usertrap（用户态 -&gt; 内核态）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usertrapret-" class="md-nav__link">
+    <span class="md-ellipsis">
+      usertrapret（内核态 -&gt; 用户态）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userret" class="md-nav__link">
+    <span class="md-ellipsis">
+      userret（用户态）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-3 代码阅读：调用系统调用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-4 代码阅读：系统调用参数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-5-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-5 内核空间的trap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-6 缺页故障
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-7 真实世界
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Chapter 4   陷阱与系统调用</h1>
+
+<p>有3种进入trap的情况：</p>
+<ul>
+<li>系统调用</li>
+<li>异常</li>
+<li>中断</li>
+</ul>
+<p>一旦代码在执行时发生了trap，会按照如下步骤进行对trap的处理：trap迫使控制权转移到内核 -&gt; <strong>内核</strong>保存寄存器和其他状态，以便恢复执行 -&gt; 内核执行适当的处理程序代码（例如，系统调用实现或设备驱动程序） -&gt; 内核恢复保存的状态，并从trap中返回 -&gt; 代码从原来的地方恢复执行。</p>
+<p>以上的部分可以简化为4个阶段：RISCV CPU的硬件行为 -&gt; 汇编指令准备一个入口进入内核C代码 -&gt; 运行内核中处理trap的C程序 -&gt; 系统调用或设备驱动服务</p>
+<h3 id="4-1-riscv">4-1 RISCV的硬件行为</h3>
+<p>关于几个关键的寄存器：</p>
+<ul>
+<li>
+<p><code>stvec</code> : 内核将trap handler（例如在用户空间下的trap，是trampoline的 <code>uservec</code> ）写到 <code>stvec</code> 中（？？为何是内核写进，一开始处于用户态内核是如何写进的？已破案详见下文）。当trap发生时，RISCV就会跳转到 <code>stvec</code> 中的地址，准备处理trap。我们可以将trap vector认为是trap handler的准备工作部分。</p>
+</li>
+<li>
+<p><code>sepc</code> : trap发生时，RISCV会将pc原本储存的地址放在这里，当从trap中返回时， <code>sret</code> 会将 <code>sepc</code> 中放到pc中以恢复程序的执行。</p>
+</li>
+<li>
+<p><code>sscratch</code>：一个特别的寄存器，通常在用户空间发生trap，并进入到uservec之后，sscratch就装载着指向进程<strong>trapframe</strong>的指针（该进程的trapframe，在进程被创建，并从userret返回的时候，就已经被内核设置好并且放置到sscratch中）&lt;- ==这里需要联系下面的 <code>userret</code> 部分==。RISC-V还提供了一条<strong>交换指令</strong>（csrrw），可以将任意寄存器与sscratch进行值的交换。sscratch的这些特性，便于在uservec中进行一些寄存器的保存、恢复工作。</p>
+</li>
+<li>
+<p><code>sstatus</code>：<code>sstatus</code>中的<strong>SIE</strong>位控制设备中断是否被启用，如果内核清除<strong>SIE</strong>，RISC-V将推迟设备中断，直到内核设置<strong>SIE</strong>。<strong>SPP</strong>位表示trap是来自用户模式还是supervisor模式，并控制<code>sret</code>返回到什么模式。</p>
+</li>
+</ul>
+<p>每个CPU都有一套单独的状态处理器，以便处理多个trap。</p>
+<p>RISCV<strong>硬件</strong>处理trap的步骤：
+（注意！全部都是硬件做的工作）</p>
+<ol>
+<li>如果该trap是设备中断，且<code>sstatus</code> <strong>SIE</strong>位为0（说明该中断为硬件中断），则不执行以下任何操作。</li>
+<li>通过清除SIE来禁用中断。</li>
+<li>复制<code>pc</code>到<code>sepc</code>。</li>
+<li>将当前模式（用户态或特权态）保存在<code>sstatus</code>的<strong>SPP</strong>位。</li>
+<li>在<code>scause</code>设置该次trap的原因。</li>
+<li>将模式转换为特权态。（但这里没有进入内核）</li>
+<li>将<code>stvec</code>复制到<code>pc</code>。</li>
+<li>从新的<code>pc</code>开始执行。</li>
+</ol>
+<p>在该阶段硬件所做工作极少：CPU的 <code>satp</code> 不会切换到内核页表，使用的栈不会切换至内核栈，也不保存除pc以外的任何寄存器。</p>
+<blockquote>
+<p>疑问：究竟是谁把 <code>uservec</code> 写进 <code>stvec</code> 的……</p>
+<p>回答：看了一下似乎是上一次trap结束后由 <code>usertrapret</code> 放进去的，那么调用 <code>kernelvec</code> 的时候为什么 <code>stvec</code> 的起始值为 <code>kernelvec</code> ? -&gt; 是进入内核时会这样初始化一下，对应代码在 <code>usertrap</code> 中</p>
+</blockquote>
+<h3 id="4-2-trap">4-2 用户空间的trap</h3>
+<p>前置知识： <code>trapframe</code> 是一页位于trampoline页下的页表。进程的<code>p-&gt;trapframe</code>也指向<code>trapframe</code>，不过是指向它的物理地址，这样内核可以通过内核页表来使用它。</p>
+<p>用户空间的trap执行代码的路径是： <code>uservec</code> -&gt; <code>usertrap</code> -&gt; <code>usertrapret</code> -&gt; <code>userret</code> </p>
+<h4 id="uservec">uservec（用户态）</h4>
+<p><code>uservec</code> ：其地址被放在trampoline页中（使每一个用户进程都可以通过trampoline运行 <code>uservec</code>）， <code>stvec</code> 首先被设置为 <code>uservec</code> 以开始运行 <code>uservec</code> 。将 <code>trapframe</code> 的地址放在寄存器 <code>sscratch</code> 中，通过 <code>csrw</code> 指令将其与寄存器 <code>a0</code> 内容互换后，<code>a0</code>将指向当前进程的<code>trapframe</code>。<code>uservec</code>将在<code>trapframe</code>保存全部的寄存器，包括从<code>sscratch</code>读取的<code>a0</code>。<code>trapframe</code>包含指向当前进程的内核栈、当前CPU的hartid、<code>usertrap</code>的地址和内核页表的地址的指针，<code>uservec</code>将这些值设置到相应的寄存器中，并将<code>satp</code>切换到内核页表和刷新TLB，然后调用<code>usertrap</code>。</p>
+<blockquote>
+<p>对uservec的总结：
+  1. 将用户进程的寄存器保存到 trapframe 中
+  2. 切换内核栈，内核线程 id，内核页表
+  3. 跳转到 kernel/trap.c 的 <code>usertrap</code> 函数</p>
+</blockquote>
+<h4 id="usertrap-">usertrap（用户态 -&gt; 内核态）</h4>
+<p><code>usertrap</code> : 其作用是确定trap的原因，处理它（<strong>进入内核处理</strong>），然后返回。 <code>stvec</code> 首先被设置为 <code>kernelvec</code> 以开始处理trap（这一步在进入内核时完成）。在 <code>usertrap</code> 里对 <code>sepc</code> 进行保存（用于下一步的恢复）。接下来 <code>usertrap</code> 根据实际情况处理trap，在退出时， <code>usertrap</code> 检查进程是否已经被杀死或应该让出CPU（如果这个trap是一个定时器中断）。</p>
+<blockquote>
+<p>总结：
+  1. 把 <code>stvec</code> 改成 <code>kernelvec</code> 以处理发生在内核的 trap
+  2. 保存用户进程的 pc 到 trapframe
+  3. 根据 <code>scause</code>、<code>devintr</code> 处理 trap
+  4. 检查是否计时器中断，若是则进行进程调度
+  5. 检查进程是否被杀死，若是则退出
+  6. 跳转到 <code>usertrapret</code> 函数</p>
+</blockquote>
+<h4 id="usertrapret-">usertrapret（内核态 -&gt; 用户态）</h4>
+<p><code>usertrapret</code> : 回到用户空间的第一步是调用 <code>usertrapret</code> 。这个函数设置RISC-V控制寄存器，为以后用户空间trap做准备。这包括改变 <code>stvec</code> 来引用 <code>uservec</code> ，准备 <code>uservec</code> 所依赖的 <code>trapframe</code> 字段，并将 <code>sepc</code> 设置为先前保存的用户程序计数器。最后， <code>usertrapret</code> 在用户页表和内核页表中映射的trampoline页上调用 <code>userret</code> 并传入参数参数 <code>a0</code> 与 <code>a1</code> ，其中 <code>a0</code> 指向 <code>TRAPFRAME</code> ， <code>a1</code> 指向用户进程页表，使用 <code>userret</code> 中的汇编代码切换页表。</p>
+<blockquote>
+<p>总结：
+  1. 保存内核页表、内核栈、CPU 核的 id
+  2. 配置 sstatus 寄存器
+  3. 调用 <code>userret</code> 并传递用户页表</p>
+</blockquote>
+<h4 id="userret">userret（用户态）</h4>
+<p><code>userret</code> : <code>userret</code> 利用传入的参数将 <code>satp</code> 切换到进程的用户页表。并将 <code>trapframe</code> 中保存的用户 <code>a0</code> 复制到 <code>sscratch</code> 中，为以后与 <code>TRAPFRAME</code> 交换做准备。之后 <code>userret</code> 从 <code>trapframe</code> 中恢复保存的用户寄存器，对 <code>a0</code> 和 <code>sscratch</code> 做最后的交换，恢复用户 <code>a0</code> 并保存 <code>TRAPFRAME</code> ，为下一次trap做准备，并使用 <code>sret</code> 返回用户空间。</p>
+<h3 id="4-3">4-3 代码阅读：调用系统调用</h3>
+<p>用户代码将 <code>exec</code> 的参数放在寄存器 <code>a0</code> 和 <code>a1</code> 中，并将系统调用号放在 <code>a7</code> 中。 <code>ecall</code> 指令进入内核，执行 <code>uservec</code> 、 <code>usertrap</code> ，然后执行 <code>syscall</code> 。</p>
+<pre><code class="language-assembly"># in initcode.S
+# exec(init, argv)
+.globl start
+start:
+        la a0, init
+        la a1, argv
+        li a7, SYS_exec
+        ecall
+</code></pre>
+<p><code>syscall</code> 从trapframe中的 <code>a7</code> 中得到系统调用号，并其作为索引在 <code>syscalls</code> 查找，并调用其对应的实现函数。当系统调用函数返回时，返回值记录在 <code>p-&gt;trapframe-&gt;a0</code> 中。系统调用返回负数表示错误，0或正数表示成功。</p>
+<pre><code class="language-c">// syscall.c
+void
+syscall(void)
+{
+  int num;
+  struct proc *p = myproc();
+
+  num = p-&gt;trapframe-&gt;a7;
+  if(num &gt; 0 &amp;&amp; num &lt; NELEM(syscalls) &amp;&amp; syscalls[num]) {
+    // Use num to lookup the system call function for num, call it,
+    // and store its return value in p-&gt;trapframe-&gt;a0
+    p-&gt;trapframe-&gt;a0 = syscalls[num]();
+  } else {
+  // 如果系统调用号无效， `syscall` 会打印错误并返回-1。
+    printf(&quot;%d %s: unknown sys call %d\n&quot;,
+            p-&gt;pid, p-&gt;name, num);
+    p-&gt;trapframe-&gt;a0 = -1;
+  }
+}
+</code></pre>
+<h3 id="4-4">4-4 代码阅读：系统调用参数</h3>
+<p>(寻找参数发生在寄存器已经被存储到trapframe中后)</p>
+<p>内核中处理trap的程序可以在trapframe中寻找需要的参数，以下是寻找参数的函数：</p>
+<pre><code class="language-c">static uint64
+argraw(int n)
+{
+  struct proc *p = myproc();
+  switch (n) {
+  case 0:
+    return p-&gt;trapframe-&gt;a0;
+  case 1:
+    return p-&gt;trapframe-&gt;a1;
+  case 2:
+    return p-&gt;trapframe-&gt;a2;
+  case 3:
+    return p-&gt;trapframe-&gt;a3;
+  case 4:
+    return p-&gt;trapframe-&gt;a4;
+  case 5:
+    return p-&gt;trapframe-&gt;a5;
+  }
+  panic(&quot;argraw&quot;);
+  return -1;
+}
+
+// Fetch the nth 32-bit system call argument.
+void
+argint(int n, int *ip)
+{
+  *ip = argraw(n);
+}
+
+// Retrieve an argument as a pointer.
+// Doesn't check for legality, since
+// copyin/copyout will do that.
+void
+argaddr(int n, uint64 *ip)
+{
+  *ip = argraw(n);
+}
+</code></pre>
+<p>如果参数为指针，内核获取指针后不能使用普通指令从用户提供的地址加载或存储，因为指针可能恶意且内核页表与用户页表映射不一致。一般使用如下的函数来实现安全地将数据复制到用户提供的地址或从用户提供的地址复制数据：</p>
+<pre><code class="language-c">// Fetch the uint64 at addr from the current process.
+int
+fetchaddr(uint64 addr, uint64 *ip)
+{
+  struct proc *p = myproc();
+  if(addr &gt;= p-&gt;sz || addr+sizeof(uint64) &gt; p-&gt;sz) // both tests needed, in case of overflow
+    return -1;
+  if(copyin(p-&gt;pagetable, (char *)ip, addr, sizeof(*ip)) != 0)
+    return -1;
+  return 0;
+}
+
+// Fetch the null-terminated string at addr from the current process.
+// Returns length of string, not including nul, or -1 for error.
+int
+fetchstr(uint64 addr, char *buf, int max)
+{
+  struct proc *p = myproc();
+  if(copyinstr(p-&gt;pagetable, buf, addr, max) &lt; 0)
+    return -1;
+  return strlen(buf);
+}
+</code></pre>
+<blockquote>
+<p>我怎么没感觉非常安全……疑问：检查指针是否安全的部分在？</p>
+</blockquote>
+<p><code>copyinstr</code> 和 <code>copyout</code> 实现了安全地从地址读出数据或向地址写入数据。（看了下这个和本章关系不大主要还是内存内容，于是不附这两个函数的代码）</p>
+<h3 id="4-5-trap">4-5 内核空间的trap</h3>
+<p>在硬件已经被切换到特权模式（内核态）之后， <code>stvec</code> 中被写入的值为 <code>kernelvec</code> 的地址，而将 <code>pc</code> 切换为 <code>stvec</code> 中的 <code>kernelvec</code> 之后， <code>kernelvec</code> 可以将 <code>satp</code> 设置为内核页表并将栈指针切换到内核栈。</p>
+<p><code>kernelvec</code> 将所有寄存器值保存在原内核线程的堆栈上。之后跳转到 <code>kerneltrap</code> 来处理设备中断和异常（内核只能发生这两种可能的trap），如果trap类型为设备中断，调用 <code>devintr</code> ;如果trap类型为异常，内核调用 <code>panic</code> 并停止执行。</p>
+<p>如果由于计时器中断而调用了 <code>kerneltrap</code> ，并且进程的内核线程正在运行（而不是调度程序线程）， <code>kerneltrap</code> 调用 <code>yield</code> 让出CPU，允许其他线程运行。在某个时刻，其中一个线程将退出，并让我们的线程及其 <code>kerneltrap</code> 恢复。</p>
+<h3 id="4-6">4-6 缺页故障</h3>
+<p>xv6对异常的响应方式：</p>
+<ul>
+<li>
+<p>用户空间发生异常 -&gt; 直接杀死鼓掌进程</p>
+</li>
+<li>
+<p>内核发生异常 -&gt; panic</p>
+</li>
+</ul>
+<p>实际运用中操作系统会用更丰富的方式来处理异常。例如使用页面故障来处理<strong><em>写时复制（copy-on-write，cow）fork</em></strong> -&gt; 其中的基本设计是父进程和子进程最初共享所有的物理页面，但将它们映射设置为只读。当子进程或父进程执行store指令时，RISC-V CPU会引发一个页面故障异常。作为对这个异常的响应，内核会拷贝一份包含故障地址的页。然后将一个副本的读/写映射在子进程地址空间，另一个副本的读/写映射在父进程地址空间。更新页表后，内核在引起故障的指令处恢复故障处理。因为内核已经更新了相关的PTE，允许写入，所以现在故障指令将正常执行。</p>
+<p><strong><em>懒分配 (lazy allocation)</em></strong> 同样也是使用页面故障实现的内存分配策略：在一个进程调用 <code>sbrk</code> 请求增长内存后，内核会为其增长地址空间（但并不分配物理内存），但在页表中令新分配的页全部无效。当新分配的页在被试图读/写时，会发生页面故障，此时内核实际为其分配物理内存。</p>
+<p>还有一个策略是<strong><em>磁盘上分页(paging from disk)</em></strong> ， 这个策略就是把懒分配实现到磁盘上。</p>
+<h3 id="4-7">4-7 真实世界</h3>
+<p>如果将内核内存映射到每个进程的用户页表中（使用适当的PTE权限标志），就不需要特殊的trampoline页了。这也将消除从用户空间trap进入内核时对页表切换的需求。这也可以让内核中的系统调用实现利用当前进程的用户内存被映射的优势，让内核代码直接去间接引用（对地址取值）用户指针。许多操作系统已经使用这些想法来提高效率。</p>
+<p>省流：直接把内核内存放一份到用户进程中。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.path"], "search": "../../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
